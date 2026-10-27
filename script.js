@@ -18,6 +18,11 @@
 // STEP 1: Get the "Shout" button by its ID ("btnShout")
 //         using document.getElementById()
 
+
+let shout = document.getElementById("btnShout").addEventListener('click', function(){
+    outShout.innerHTML = shoutInput.value.toUpperCase();
+})
+
 // STEP 2: Add a click event listener to the button.
 //         Inside the listener function:
 //         a) Get the text from the input with ID "shoutInput"
@@ -30,6 +35,7 @@
 //         Example: "hello" → "HELLO!"
 
 
+
 // ============================================
 //  MAIN: Pizza Builder
 // ============================================
@@ -39,7 +45,63 @@
 //   - Toppings (checkboxes): $0.50 each
 //   - Service (dropdown): Dine In $0, Take Out $1.50,
 //     Delivery $3.00
+document.getElementById("btnCalc").addEventListener("click", function () {
+    let sizePrice = 0;
+    let count = 0;
+    let serviceFee = 0;
 
+    const rb = document.getElementsByName("rg");
+
+    for (let i = 0; i < rb.length; i++) {
+        if (rb[i].checked) {
+            sizePrice = parseFloat(rb[i].value);
+        }
+    }
+
+    const top = document.getElementsByName("cb");
+
+    for (let i = 0; i < top.length; i++) {
+        if (top[i].checked) {
+            count += 1;
+        }
+    }
+
+    let toppingsPrice = count * 0.50;
+    let service = document.getElementById("serviceSelect").value;
+
+    if (service === "dinein") {
+        serviceFee = 0;
+    } else if (service === "takeout") {
+        serviceFee = 1.50;
+    } else {
+        serviceFee = 3.00;
+    }
+
+    let total = sizePrice + toppingsPrice + serviceFee;
+    let name = document.getElementById("myInput").value;
+
+    if (name === "") {
+        name = "Customer";
+    }
+
+    document.getElementById("myPara").innerHTML =
+        name + ", your total is $" + total.toFixed(2);
+});
+
+document.getElementById("clearBtn").addEventListener("click", function () {
+    document.getElementById("myInput").value = "";
+    document.getElementById("r3").checked = true;
+
+    const top = document.getElementsByName("cb");
+
+    for (let i = 0; i < top.length; i++) {
+        top[i].checked = false;
+    }
+
+    document.getElementById("serviceSelect").value = "dinein";
+    document.getElementById("myPara").innerHTML = "";
+});
+)
 // STEP 3: Get the "Calculate Total" button by ID ("btnCalc")
 //         Add a click event listener.
 //         Inside the listener:
