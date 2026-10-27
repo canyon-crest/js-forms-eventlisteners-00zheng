@@ -19,9 +19,10 @@
 //         using document.getElementById()
 
 
-let shout = document.getElementById("btnShout").addEventListener('click', function(){
-    outShout.innerHTML = shoutInput.value.toUpperCase();
-})
+document.getElementById("btnShout").addEventListener("click", function () {
+    let text = document.getElementById("shoutInput").value;
+    document.getElementById("outShout").innerHTML = text.toUpperCase();
+});
 
 // STEP 2: Add a click event listener to the button.
 //         Inside the listener function:
@@ -101,7 +102,7 @@ document.getElementById("clearBtn").addEventListener("click", function () {
     document.getElementById("serviceSelect").value = "dinein";
     document.getElementById("myPara").innerHTML = "";
 });
-)
+
 // STEP 3: Get the "Calculate Total" button by ID ("btnCalc")
 //         Add a click event listener.
 //         Inside the listener:
